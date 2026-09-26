@@ -23,18 +23,12 @@
         .header h1 { color: var(--primary); font-size: 20px; text-transform: uppercase; margin-bottom: 8px; font-weight: 800; letter-spacing: 0.3px; line-height: 1.3; }
         .header p { color: #718096; font-size: 13px; max-width: 600px; margin: 0 auto; line-height: 1.4; }
         .instructions { background: #ebf8ff; border-left: 4px solid var(--secondary); padding: 12px 15px; border-radius: 4px; margin-bottom: 20px; font-size: 13px; line-height: 1.5; }
-        
-        /* Спеціальний мобільний адаптив для рядків */
         .q-row { display: flex; flex-direction: column; padding: 16px 8px; border-bottom: 1px solid var(--border); background: var(--card-bg); }
         .q-row:hover { background: #f8fafc; }
         .q-text { width: 100%; font-size: 15px; line-height: 1.5; font-weight: 500; margin-bottom: 12px; text-align: left; }
         .q-text span { font-weight: bold; color: var(--secondary); margin-right: 4px; }
-        
-        /* Зручні великі кнопки під текстом на весь екран смартфона */
         .options { width: 100%; display: flex; justify-content: space-between; gap: 10px; }
         .opt-btn { flex: 1; height: 44px; border: 2px solid #cbd5e0; border-radius: 8px; background: #fff; font-size: 16px; font-weight: 700; color: #4a5568; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
-        
-        /* Верстка для комп'ютерів (там залишаємо класичний вигляд в один рядок) */
         @media(min-width: 600px) {
             .q-row { flex-direction: row; align-items: center; justify-content: space-between; padding: 16px 10px; }
             .q-text { width: 62%; margin-bottom: 0; }
@@ -43,18 +37,14 @@
             .container { padding: 40px; }
             .header h1 { font-size: 26px; }
         }
-        
         .opt-btn:active, .opt-btn:hover { border-color: var(--secondary); color: var(--secondary); background: #f0f4f8; }
         .opt-btn.selected { background: var(--secondary); border-color: var(--secondary); color: #fff; transform: scale(1.02); box-shadow: 0 4px 6px rgba(43,108,176,0.2); }
-        
         .submit-container { text-align: center; margin-top: 30px; padding: 0 5px; }
         .submit-btn { width: 100%; max-width: 340px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; padding: 16px 20px; font-size: 16px; font-weight: 700; border-radius: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(43,108,176,0.3); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px; }
         .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(43,108,176,0.4); }
-        
         .hidden { display: none !important; }
         .result-screen h2 { color: var(--primary); font-size: 22px; text-align: center; margin-bottom: 20px; border-bottom: 3px solid var(--accent); padding-bottom: 10px; }
         .section-title { font-size: 15px; font-weight: 700; color: #2d3748; margin: 25px 0 12px 0; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.5px; }
-        
         .gift-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.01); border-left: 5px solid var(--secondary); text-align: left; }
         .gift-card.development { border-left-color: #a0aec0; background: #fafafa; }
         .gift-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 10px; }
@@ -64,23 +54,18 @@
     </style>
 </head>
 <body>
-
     <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
-
     <div class="container">
-        <!-- Екран тестування -->
         <div id="testScreen">
             <div class="header">
                 <h1>Прояснення Божого плану для твого життя</h1>
                 <p>Дізнайся свої духовні дари, таланти та унікальне покликання через інтерактивне оцінювання</p>
             </div>
-            
             <div class="instructions">
                 <strong>💡 Інструкція:</strong> Оціни кожне зі 110 тверджень від 1 до 5: <br>
                 <strong>1</strong> — взагалі не про мене; <strong>3</strong> — інколи; <strong>5</strong> — це точно про мене.<br>
                 <span style="color: var(--secondary); font-weight: 600; display: inline-block; margin-top: 5px;">Прогрес заповнення: <span id="progressText">0</span> зі 110 відповідей</span>
             </div>
-
             <form id="quizForm">
                 <div id="questionsContainer"></div>
                 <div class="submit-container">
@@ -88,24 +73,18 @@
                 </div>
             </form>
         </div>
-
-        <!-- Екран результатів -->
         <div id="resultScreen" class="hidden result-screen">
             <h2>✨ Твій духовний профіль сформовано!</h2>
             <p style="text-align: center; margin-bottom: 25px; color: #718096; font-size: 14px; padding: 0 5px;">Аналіз твоїх духовних здібностей на основі підрахунку балів за біблійною матрицею служіння.</p>
-            
             <div class="section-title" style="color: #2f855a;">🔥 ТОП-5 ВІДКРИТИХ ДУХОВНИХ ДАРІВ (Твоя сила)</div>
             <div id="openedGifts"></div>
-
             <div class="section-title" style="color: #4a5568;">🌱 ТОП-5 ДАРІВ ДЛЯ ПОТЕНЦІЙНОГО РОЗВИТКУ</div>
             <div id="developmentGifts"></div>
-            
             <div class="submit-container">
                 <button type="button" class="submit-btn" style="background: #4a5568; box-shadow: none;" onclick="window.location.reload()">Пройти тест заново</button>
             </div>
         </div>
     </div>
-
     <script>
         const questions = [
             "Мені подобається працювати з іншими для визначення цілей у роботі.",
@@ -125,10 +104,10 @@
             "Мене дуже турбує те, що багато людей не служать Богові.",
             "У мене розвинена здатність довіряти Богові у складних ситуаціях.",
             "Маю бажання підтримувати фінансово великі проєкти для Господа.",
-            "Люблю допомагати людям з фізичними потребами.",
+            "Любли допомагати людям з фізичними потребами.",
             "Маю здатність схиляти людей слідувати за мною у служінні.",
             "Завжди співчуваю тим, хто проходить кризу.",
-            "Мені найбільше подобається вести і дбати про маленьку групку віруючих.",
+            "Mentі найбільше подобається вести і дбати про маленьку групку віруючих.",
             "При читанні Біблії я завжди бачу ідеї та можливості їх практичного втілення у житті.",
             "Я відчуваю свою значимість, коли формую бюджети для виконання планів.",
             "Мені хочеться служити там, де ще ніхто не служив.",
@@ -140,3 +119,202 @@
             "Мені більше подобається керувати людьми, а не слідувати за кимось.",
             "Я надихаюся, коли простягаю руку допомоги тим, хто у складних обставинах.",
             "Мені подобається приділяти увагу тим, хто потребує турботи.",
+            "Я відчуваю потребу пояснювати людям Боже Слово для їхнього кращого розуміння.",
+            "Я відчуваю себе здатним створити певну організовану структуру, що потрібна для втілення якогось плану.",
+            "Я є ініціативним та наділений духом єдности.",
+            "Я відчуваю особливе наповнення, коли люди приймають Ісуса.",
+            "Я можу ефективно надихати віруючих для розвитку їх віри.",
+            "Я впевнений/впевнена, що Бог буде робити щось особливе через мене або моє служіння.",
+            "Я переконаний/переконана, що все, що я маю належить Богові і хочу використовувати це в служінні Йому.",
+            "Я відчуваю себе більш компетентним/компетентною, коли допомагаю комусь у рамках платформи, а не публічно.",
+            "Я схильний/схильна домінувати над людьми та ситуаціями, особливо коли неуважно поводжуся.",
+            "У мене вроджена здатність «нести» чужі турботи.",
+            "Я маю глибоке бажання захищати віруючих від поганих людей та згубного вчення.",
+            "Я глибоко посвячений/посвячена біблійній істині та потребі людей пізнавати цю істину.",
+            "Я тішуся, коли особисто залучаюся у внутрішню структуру служіння.",
+            "Я відчуваю виклик, коли переді мною велике бачення, досягнення якого є неможливим для інших.",
+            "Я глибоко співчуваю людям, які досі живуть без Христа.",
+            "У мене є здатність говорити те, що потрібно людям у момент їхніх труднощів і розчарувань.",
+            "Я не дивуюся, коли Бог перетворює перешкоди на можливості.",
+            "Я добре почуваюся, коли можу сповна послужити людям у потребі.",
+            "У мене є сильна здатність служити іншим.",
+            "Я маю сильну мотивацію, аби служити Христові.",
+            "Я можу відчувати біль тих, хто страждає.",
+            "Мені подобається допомагати новонаверненим у їхньому шляху духовного укріплення.",
+            "Кожного разу, коли я викладаю – кількість учнів збільшується.",
+            "Я готовий/готова використовувати ресурси організації для вирішення проблем.",
+            "Я отримаю задоволення, коли можу з нічого створити щось.",
+            "Одним із моїх пріоритетів є навчати людей ділитися своєю вірою з іншими.",
+            "Люди, які емоційно чи духовно страждають говорять, що я прекрасний слухач/слухачка.",
+            "Мені подобається довіряти Богові у найскладніших обставинах.",
+            "Я маю змогу віддавати себе, або те, що маю для служіння іншим.",
+            "Я можу надавати незначну [невелику] допомогу, потрібну людям для вирішення життєво важливих завдань.",
+            "Більшість людей довіряє мені та моєму стилю управління.",
+            "У мене гостре бажання змінити щось у житті занепокоєних людей.",
+            "Мені подобається бути серед віруючих, які проходять труднощі, щоб надихати їх залишатися вірними Христові.",
+            "Я маю бажання досліджувати біблійні істини та застосовувати їх у житті.",
+            "Мені подобається слідкувати за виконанням планів, які сприяють досягненню цілей.",
+            "Я готовий/готова йти на ризик, коли розпочинаю нові проєкти.",
+            "Упродовж багатьох років я молюся за покаяння моїх невіруючих друзів.",
+            "Проводжу багато часу, нагадуючи віруючим, що Ісус панує над усім.",
+            "Можу довіряти Богові навіть тоді, коли інші втрачають будь-яку надію.",
+            "Друзі стурбовані тим, що дехто використовує мою щедрість та ресурси.",
+            "Я вмотивований/вмотивована тим, що виконую справи, які дехто вважає незначними, дрібними.",
+            "Люди довіряють моїй здатності допомогти їм досягти цілей в служінні.",
+            "Люди у стражданнях горнуться до мене та шукають мого співчуття.",
+            "У мене є сміливість протистояти віруючим, які живуть у гріху.",
+            "Бог дав мені незвичайну здатність пояснювати глибокі істини з Біблії.",
+            "Я надаю перевагу тому, щоб кожна сфера у служінні провадилася організовано та ефективно.",
+            "Хочу робити щось велике для Бога, але в своєму стилі.",
+            "Маю велику мотивацію, щоб відповідати на питання невіруючих та розвіяти їхні сумніви.",
+            "У мене є здатність протистояти неслухняним віруючим, щоб вони змінювалися.",
+            "Мене мотивують люди, які мають великі мрії з Богом.",
+            "Зазвичай, до мене приходять з проханнями, що стосуються фінансових потребах людей.",
+            "Завжди шукаю можливість служити практично там, де є потреба у цьому.",
+            "Найбільше я радію, коли можу сильно вплинути на велику групу людей.",
+            "Близькі люди думають, що я дозволяю відступникам користуватися собою.",
+            "Віруючі часто шукають моєї поради, коли треба прийняти важливе рішення.",
+            "Я бажаю вивчати і пояснювати біблійні істини.",
+            "Я певен/певна, що маю приділяти увагу дрібницям."
+        ];
+        const questionsPart2 = [
+            "Я думаю, що ми маємо створювати нові структури служіння, коли запускаємо нові проєкти.",
+            "Мене дуже приваблюють євангелізаційні проєкти.",
+            "Я можу проводить більшість часу, підбадьорюючи людей у їхньому житті з Христом.",
+            "Мене турбують люди, які беруть на себе ризик.",
+            "Я не розумію віруючих, які не допомагають людям у потребах.",
+            "Я волію не афішувати свою допомогу людям, які стикаються з потребами.",
+            "Маю сильне бажання брати на себе відповідальність у більшості ситуацій.",
+            "Мені подобається відвідувати людей у лікарнях чи будинках догляду за старенькими.",
+            "Я постійно молюся за людей, які шукають у мене допомоги.",
+            "Я помічаю, що люди, які слідують моєму вченню міняють своє життя.",
+            "Я маю велике бажання побачити багато людей за спільною роботою з досягнення поставлених цілей.",
+            "Я певен/певна, що майбутнє кожної країни залежить від створення нових проєктів у служінні.",
+            "Я незадоволений/незадоволена, коли не маю змоги розповісти про свою віру.",
+            "Я відчуваю глибоке наповнення, коли нагадую віруючим про відповідальність жити з Христом.",
+            "Люди дивуються з моєї здатности довіряти Ісусові навіть у найскладніших ситуаціях.",
+            "Я не очікую нічого взамін, коли щедро допомагаю іншим.",
+            "Я певен/певна, що жодна праця не є принизливою, якщо вона покликана допомагати людям.",
+            "На нарадах люди очікують від мене чогось.",
+            "Я переконаний/переконана, що людям, які помиляються треба давати второй і третій шанс.",
+            "Мені подобається відвідувати людей вдома чи в лікарні.",
+            "Я відчуваю особливе бажання відповідати людям на їх питання стосовно Біблії."
+        ];
+
+        // Об'єднання масивів питань в один загальний
+        const allQuestions = questions.concat(questionsPart2);
+
+        const giftMeta = {
+            "Управління (Адміністрування)": { row: 0, desc: "Особлива здатність організовувати діяльність людей, будувати плани, бюджети та координувати процеси для досягнення цілей команди (1 Кор. 12:28)." },
+            "Апостольство": { row: 1, desc: "Здатність ефективно засновувати нові церкви, християнські організації та запускати масштабні духовні проєкти на нових територіях або за кордоном (Еф. 4:11)." },
+            "Благовістя": { row: 2, desc: "Здатність легко і зрозуміло ділитися Євангелієм з невіруючими, допомагаючи їм зробити свідомий крок віри до Христа (Еф. 4:11)." },
+            "Потіха (Підбадьорення)": { row: 3, desc: "Здатність втішати, душевно підбадьорювати та з любов'ю наставляти або коригувати людей, які проходять випробування (Рим. 12:8)." },
+            "Віра": { row: 4, desc: "Здатність глибоко довіряти Богові у складних ситуаціях та мати впевненість у виконанні речей, які для більшості здаються неможливими (1 Кор. 12:9)." },
+            "Подавання (Щедрість)": { row: 5, desc: "Здатність з радістю та простотою ділитися фінансами і ресурсами для Божої справи та допомоги іншим, не очікуючи нічого натомість (Рим. 12:8)." },
+            "Допомога (Служіння)": { row: 6, desc: "Здатність помічати практичні побутові потреби та охоче виконувати справи, що спрощують процеси та допомагають іншим лідерам (Рим. 12:7)." },
+            "Лідерство (Керування)": { row: 7, desc: "Здатність бачити чітку перспективу розвитку, надихати людей спільним баченням та вести їх за собою до поставленої мети (Рим. 12:8)." },
+            "Милосердя": { row: 8, desc: "Незвичайна здатність глибоко співпереживати, відчувати біль тих, хто страждає, та виявляти до них практичну, дієву турботу (Рим. 12:8)." },
+            "Пасторство": { row: 9, desc: "Здатність тривалий час духовно дбати, опікуватися, захищати та годувати Божим Словом маленьку або велику спільноту людей (Еф. 4:11)." },
+            "Учительство": { row: 10, desc: "Здатність глибоко досліджувати Писання, структурувати істини та максимально доступно пояснювати Боже Слово іншим (Рим. 12:7)." }
+        };
+
+        const responses = new Array(110).fill(0);
+
+        function initQuiz() {
+            const container = document.getElementById('questionsContainer');
+            allQuestions.forEach((q, index) => {
+                const row = document.createElement('div');
+                row.className = 'q-row';
+                row.id = `q-row-${index}`;
+                
+                const textDiv = document.createElement('div');
+                textDiv.className = 'q-text';
+                textDiv.innerHTML = `<span>${index + 1}.</span> ${q}`;
+                
+                const optsDiv = document.createElement('div');
+                optsDiv.className = 'options';
+                
+                for(let val = 1; val <= 5; val++) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'opt-btn';
+                    btn.innerText = val;
+                    btn.onclick = () => selectValue(index, val, btn);
+                    optsDiv.appendChild(btn);
+                }
+                
+                row.appendChild(textDiv);
+                row.appendChild(optsDiv);
+                container.appendChild(row);
+            });
+        }
+
+        function selectValue(qIdx, val, clickedBtn) {
+            responses[qIdx] = val;
+            
+            const row = document.getElementById(`q-row-${qIdx}`);
+            const buttons = row.getElementsByClassName('opt-btn');
+            for(let b of buttons) b.classList.remove('selected');
+            clickedBtn.classList.add('selected');
+            
+            const answeredCount = responses.filter(v => v > 0).length;
+            document.getElementById('progressText').innerText = answeredCount;
+            document.getElementById('progressBar').style.width = `${(answeredCount / 110) * 100}%`;
+        }
+
+        function processResults() {
+            const unanswered = [];
+            responses.forEach((val, idx) => { if(val === 0) unanswered.push(idx); });
+            
+            if(unanswered.length > 0) {
+                alert(`Будь ласка, заповніть всі відповіді. Пропущено питань: ${unanswered.length}`);
+                document.getElementById(`q-row-${unanswered}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            
+            const giftScores = [];
+            for (let [giftName, meta] of Object.entries(giftMeta)) {
+                let total = 0;
+                for (let k = 0; k < 10; k++) {
+                    let qIndex = meta.row + (k * 11);
+                    total += responses[qIndex];
+                }
+                giftScores.push({ name: giftName, score: total, desc: meta.desc });
+            }
+            
+            giftScores.sort((a, b) => b.score - a.score);
+            
+            const top5Opened = giftScores.slice(0, 5);
+            const top5Development = giftScores.slice(5, 10);
+            
+            renderGifts('openedGifts', top5Opened, false);
+            renderGifts('developmentGifts', top5Development, true);
+            
+            document.getElementById('testScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderGifts(containerId, giftsList, isDevelopment) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            giftsList.forEach(gift => {
+                const card = document.createElement('div');
+                card.className = `gift-card ${isDevelopment ? 'development' : ''}`;
+                
+                card.innerHTML = `
+                    <div class="gift-header">
+                        <div class="gift-name">${gift.name}</div>
+                        <div class="gift-score">${gift.score} / 50 балів</div>
+                    </div>
+                    <div class="gift-desc">${gift.desc}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
